@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepFake Detection</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    
+    <!-- Navbar -->
+    <nav class="bg-gray-800/50 backdrop-blur-sm fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <img class="h-8" src="https://ai-public.creatie.ai/gen_page/logo_placeholder.png" alt="Logo">
+                    <div class="ml-10 space-x-6 hidden md:flex">
+                        <a href="#" class="text-white hover:text-blue-400">Home</a>
+                        <a href="#" class="text-gray-300 hover:text-white">About</a>
+                        <a href="#" class="text-gray-300 hover:text-white">Services</a>
+                        <a href="#" class="text-gray-300 hover:text-white">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center">
+        <img src="https://source.unsplash.com/1920x1080/?cyber,ai" class="absolute inset-0 w-full h-full object-cover opacity-40" alt="AI Background">
+        <div class="relative text-center px-6">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-600">
+                Advanced DeepFake Detection
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-6">
+                Protect yourself from digital deception with our state-of-the-art deepfake detection technology.
+            </p>
+            <button onclick="scrollToUpload()" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 text-lg font-semibold rounded-lg shadow-lg">
+                <i class="fas fa-shield-alt mr-2"></i> Start Detection
+            </button>
+        </div>
+    </section>
+
+    <!-- Understanding DeepFake Threats -->
+    <section class="py-20 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-10">Understanding DeepFake Threats</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-700 rounded-lg p-8">
+                    <div class="text-3xl text-blue-400"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="text-xl font-semibold mt-4">Rising Threats</h3>
+                    <p class="text-gray-300 mt-2">87% increase in deepfake incidents reported last year.</p>
+                </div>
+                <div class="bg-gray-700 rounded-lg p-8">
+                    <div class="text-3xl text-blue-400"><i class="fas fa-user-shield"></i></div>
+                    <h3 class="text-xl font-semibold mt-4">Common Threats</h3>
+                    <p class="text-gray-300 mt-2">Identity theft, fraud, and misinformation campaigns.</p>
+                </div>
+                <div class="bg-gray-700 rounded-lg p-8">
+                    <div class="text-3xl text-blue-400"><i class="fas fa-lock"></i></div>
+                    <h3 class="text-xl font-semibold mt-4">Prevention Tips</h3>
+                    <p class="text-gray-300 mt-2">Verify sources & scan media files regularly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- File Upload Section -->
+    <section id="upload-section" class="py-20 bg-gray-900">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-10">Choose Detection Method</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-800 p-8 border border-gray-700 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">Single File Upload</h3>
+                    <div class="border-2 border-dashed border-gray-600 p-8 rounded-lg">
+                        <i class="fas fa-cloud-upload-alt text-4xl text-blue-400"></i>
+                        <p class="mt-4">Drag and drop your file here or</p>
+                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg mt-4">Browse Files</button>
+                    </div>
+                </div>
+                <div class="bg-gray-800 p-8 border border-gray-700 rounded-lg">
+                    <h3 class="text-xl font-semibold mb-4">Bulk Upload</h3>
+                    <div class="border-2 border-dashed border-gray-600 p-8 rounded-lg">
+                        <i class="fas fa-folder-open text-4xl text-blue-400"></i>
+                        <p class="mt-4">Select multiple files for batch processing</p>
+                        <button class="bg-blue-600 text-white px-6 py-2 rounded-lg mt-4">Select Files</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Buttons -->
+    <section class="fixed bottom-0 left-0 right-0 bg-gray-800 border-t border-gray-700 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex space-x-4">
+                <button class="bg-blue-600 text-white px-6 py-2 rounded-lg">
+                    <i class="fas fa-play mr-2"></i> Begin Analysis
+                </button>
+                <button class="bg-gray-700 text-white px-6 py-2 rounded-lg">
+                    <i class="fas fa-download mr-2"></i> Download Report
+                </button>
+            </div>
+            <button class="bg-gray-700 text-white px-6 py-2 rounded-lg">
+                <i class="fas fa-save mr-2"></i> Save Settings
+            </button>
+        </div>
+    </section>
+
+    <!-- Scroll to Upload Section -->
+    <script>
+        function scrollToUpload() {
+            document.getElementById('upload-section').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
