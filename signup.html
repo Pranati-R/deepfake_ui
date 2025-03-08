@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | DeepFake Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Animated Background */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://source.unsplash.com/random/1600x900/?galaxy,stars,space') no-repeat center center/cover;
+            z-index: -1;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Glassmorphism Effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .glass-effect:hover {
+            transform: scale(1.02);
+        }
+
+        /* Input Styling */
+        .input-box {
+            background: rgba(255, 255, 255, 0.15);
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            width: 100%;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-box:focus {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Button */
+        .btn-primary {
+            background: linear-gradient(90deg, #2563eb, #1e40af);
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease-in-out;
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #1e40af, #2563eb);
+            box-shadow: 0px 0px 15px rgba(37, 99, 235, 0.5);
+        }
+
+        /* Fade-in Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Error Messages */
+        .error {
+            color: #ff4747;
+            font-size: 14px;
+            display: none;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background -->
+    <div class="background"></div>
+
+    <div class="h-screen flex justify-center items-center">
+        <div class="w-full max-w-md glass-effect shadow-lg fade-in">
+            <h2 class="text-3xl font-bold text-center mb-6">Sign Up</h2>
+            <p class="text-gray-300 text-center mb-6">Create an account to start detecting deepfakes</p>
+
+            <form id="signupForm">
+                <div class="mb-4">
+                    <label class="block text-gray-300 mb-2">Email</label>
+                    <input type="email" id="email" class="input-box" placeholder="Enter your email" required>
+                    <p class="error" id="emailError">Invalid email format</p>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-300 mb-2">Password</label>
+                    <input type="password" id="password" class="input-box" placeholder="Enter your password" required>
+                    <p class="error" id="passwordError">Password must be at least 6 characters</p>
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-gray-300 mb-2">Confirm Password</label>
+                    <input type="password" id="confirm_password" class="input-box" placeholder="Confirm your password" required>
+                    <p class="error" id="confirmPasswordError">Passwords do not match</p>
+                </div>
+
+                <button type="submit" class="btn-primary text-white">Sign Up</button>
+            </form>
+
+            <p class="text-gray-400 text-center mt-4">Already have an account? <a href="login.html" class="text-blue-400 hover:underline">Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get form values
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm_password").value;
+
+            // Error elements
+            const emailError = document.getElementById("emailError");
+            const passwordError = document.getElementById("passwordError");
+            const confirmPasswordError = document.getElementById("confirmPasswordError");
+
+            // Reset errors
+            emailError.style.display = "none";
+            passwordError.style.display = "none";
+            confirmPasswordError.style.display = "none";
+
+            let valid = true;
+
+            // Email validation
+            if (!email.includes("@") || !email.includes(".")) {
+                emailError.style.display = "block";
+                valid = false;
+            }
+
+            // Password validation
+            if (password.length < 6) {
+                passwordError.style.display = "block";
+                valid = false;
+            }
+
+            // Confirm password validation
+            if (password !== confirmPassword) {
+                confirmPasswordError.style.display = "block";
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            // Simulating API request
+            fetch("http://127.0.0.1:5000/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert("Signup successful! Redirecting to login...");
+                    window.location.href = "login.html";
+                } else {
+                    alert("Signup failed: " + data.message);
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    </script>
+
+</body>
+</html>
